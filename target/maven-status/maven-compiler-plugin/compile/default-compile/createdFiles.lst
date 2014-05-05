@@ -1,0 +1,5 @@
+org\konghao\service\UserService.class
+org\konghao\service\HelloDwr.class
+org\konghao\service\UserException.class
+org\konghao\service\Group.class
+org\konghao\service\User.class

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+
+  <allow>
+  <!-- 此时hello就是这个HelloDwr的对象，在页面中就需要通过hello.js来引入 -->
+    <create creator="new" javascript="hello">
+      <param name="class" value="org.konghao.service.HelloDwr"/>
+    </create>
+    <create creator="new" javascript="UserService">
+      <param name="class" value="org.konghao.service.UserService"/>
+    </create>
+    
+     <convert converter="bean" match="org.konghao.service.User"/>
+     <convert converter="bean" match="org.konghao.service.Group"/>
+     
+    <convert converter="exception" match="java.lang.Exception"/>
+    <convert converter="bean" match="java.lang.StackTraceElement"/>
+ 
+  </allow>
+
+</dwr>

@@ -1,0 +1,35 @@
+1、导入DWR的包
+2、设置web.xml在这个xml中加入相应DwrListener和DwrServlet
+    <listener>
+    <listener-class>org.directwebremoting.servlet.DwrListener</listener-class>
+     </listener>
+  
+  <servlet>
+    <servlet-name>dwr-invoker</servlet-name>
+    <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+	
+    <!-- This should NEVER be present in live -->
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+   
+  <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+    <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+3、创建相应的dwr.xml在WEB-INF中，并且在这个文件中加入相应的java对象的创建信息
+  <allow>
+    <create creator="new">
+      <param name="class" value="org.konghao.service.HelloDwr"/>
+    </create>
+  </allow>
+  其中create表示将一个java的对象公布为一个javascript的对象，param中的value设置要公布的java类，只要写了create之后这个类就会自动创建一个HelloDwr.js的文件
+4、在页面中引入相应的dwr
+    首先需要引入webContext/dwr/engine.js
+    其次引入在dwr.xml中创建的类webContext/dwr/interface/HelloDwr.js
+5、引入了这个类之后，就可以通过HelloDwr.xxx来完成对java代码的引入，引用时最后一个参数是回调函数，通过回调函数可以获取这个类的返回值。
+    
